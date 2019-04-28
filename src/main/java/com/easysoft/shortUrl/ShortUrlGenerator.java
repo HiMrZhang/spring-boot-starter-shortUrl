@@ -21,6 +21,11 @@ import java.sql.SQLException;
  * @review: qiujiayu[qiu_jy@suixingpay.com]/2018年7月2日 上午10:13:18
  */
 public abstract class ShortUrlGenerator {
+    protected ShortUrlProperties shortUrlProperties;
+
+    public ShortUrlGenerator(ShortUrlProperties shortUrlProperties) {
+        this.shortUrlProperties = shortUrlProperties;
+    }
 
     /**
      * 初始化准备工作
@@ -34,10 +39,16 @@ public abstract class ShortUrlGenerator {
      * @return
      */
     public String shortUrl(String longUrl) {
-        return HexConvert.tenToSixTwo(generatorId(longUrl));
+        return shortUrlProperties.getDomainName() + "/" + HexConvert.tenToSixTwo(generatorId(longUrl));
     }
 
+    public String restoreUrl(String shortUrl) {
+        return getLongUrl(HexConvert.sixTwoToTen(shortUrl.replace(shortUrlProperties.getDomainName(), "")));
+    }
+
+
     protected abstract Long generatorId(String longUrl);
+
     public abstract String getLongUrl(Long id);
 
     public void close(PreparedStatement ps) {

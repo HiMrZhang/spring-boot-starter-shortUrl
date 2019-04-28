@@ -18,4 +18,6 @@ public class ShortUrlProperties {
     private String dataSourceName;
 
     private String tableName = "link";
+
+    private String domainName = "";
 }

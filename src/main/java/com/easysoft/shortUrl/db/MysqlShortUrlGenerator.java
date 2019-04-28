@@ -11,11 +11,10 @@ import java.sql.Statement;
 
 public class MysqlShortUrlGenerator extends ShortUrlGenerator {
     private DataSource dataSource;
-    private ShortUrlProperties shortUrlProperties;
 
     public MysqlShortUrlGenerator(DataSource dataSource, ShortUrlProperties shortUrlProperties) {
+        super(shortUrlProperties);
         this.dataSource = dataSource;
-        this.shortUrlProperties = shortUrlProperties;
     }
 
     @Override
