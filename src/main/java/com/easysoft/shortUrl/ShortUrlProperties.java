@@ -2,6 +2,7 @@ package com.easysoft.shortUrl;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.util.StringUtils;
 
 @Data
 @ConfigurationProperties(prefix = ShortUrlProperties.PREFIX)
@@ -20,4 +21,14 @@ public class ShortUrlProperties {
     private String tableName = "link";
 
     private String domainName = "";
+
+    public void setDomainName(String domainName) {
+        if (!StringUtils.isEmpty(domainName)) {
+            if (!domainName.endsWith("/")) {
+                domainName += "/";
+            }
+            this.domainName = domainName;
+        }
+
+    }
 }

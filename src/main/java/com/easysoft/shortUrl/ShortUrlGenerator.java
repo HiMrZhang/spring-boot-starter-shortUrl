@@ -39,7 +39,7 @@ public abstract class ShortUrlGenerator {
      * @return
      */
     public String shortUrl(String longUrl) {
-        return shortUrlProperties.getDomainName() + "/" + HexConvert.tenToSixTwo(generatorId(longUrl));
+        return shortUrlProperties.getDomainName() + HexConvert.tenToSixTwo(generatorId(longUrl));
     }
 
     public String restoreUrl(String shortUrl) {
